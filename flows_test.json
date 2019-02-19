@@ -11,15 +11,14 @@
         "type": "http in",
         "z": "f2f59b49.5650e8",
         "name": "",
-        "url": "/test",
+        "url": "/rapidservlet/rapid",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 80,
+        "x": 120,
         "y": 80,
         "wires": [
             [
-                "824de407.201208",
                 "63c71f7b.d3634"
             ]
         ]
@@ -36,20 +35,6 @@
         "wires": []
     },
     {
-        "id": "824de407.201208",
-        "type": "debug",
-        "z": "f2f59b49.5650e8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 330,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "63c71f7b.d3634",
         "type": "template",
         "z": "f2f59b49.5650e8",
@@ -58,10 +43,10 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "{aaa:111}",
+        "template": "{\"result\":[{\"category\":\"t-C01cat\",\"confidence\":0.52550542354584,\"position\":[-50,-50,50,50]},{\"category\":\"t-C01cat\",\"confidence\":0.52564257383347,\"position\":[-25,-50,75,50]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[0,-50,100,50]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[25,-50,125,50]},{\"category\":\"t-C01cat\",\"confidence\":0.5256906747818,\"position\":[-50,-25,50,75]},{\"category\":\"t-C01cat\",\"confidence\":0.52552902698517,\"position\":[-25,-25,75,75]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[0,-25,100,75]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[25,-25,125,75]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[-50,0,50,100]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[-25,0,75,100]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[0,0,100,100]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[25,0,125,100]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[-50,25,50,125]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[-25,25,75,125]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[0,25,100,125]},{\"category\":\"t-C01cat\",\"confidence\":0.52543026208878,\"position\":[25,25,125,125]}],\"IMA_status\":\"0\",\"all_result\":{\"category\":[\"t-C01cat\",\"t-C02doc\"],\"result\":[{\"position\":[-50,-50,50,50],\"confidence\":[0.52550542354584,0.47449463605881]},{\"position\":[-25,-50,75,50],\"confidence\":[0.52564257383347,0.47435745596886]},{\"position\":[0,-50,100,50],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[25,-50,125,50],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[-50,-25,50,75],\"confidence\":[0.5256906747818,0.4743093252182]},{\"position\":[-25,-25,75,75],\"confidence\":[0.52552902698517,0.47447091341019]},{\"position\":[0,-25,100,75],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[25,-25,125,75],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[-50,0,50,100],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[-25,0,75,100],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[0,0,100,100],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[25,0,125,100],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[-50,25,50,125],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[-25,25,75,125],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[0,25,100,125],\"confidence\":[0.52543026208878,0.4745697081089]},{\"position\":[25,25,125,125],\"confidence\":[0.52543026208878,0.4745697081089]}]}}\n",
         "output": "str",
-        "x": 300,
-        "y": 100,
+        "x": 340,
+        "y": 80,
         "wires": [
             [
                 "c3e3d494.fc44e8"

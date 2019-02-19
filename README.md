@@ -1,4 +1,5 @@
 # nrc - Node Red Container -
+This is static json data responser.
 
 ## Getting Started
 
@@ -9,7 +10,7 @@ docker build -t nrc .
 docker run -it -p 80:1880 --name mynrc nrc
 ```
 
-## Run rnc
+## Run nrc
 
 ```
 curl http://localhost/rapidservlet/rapid

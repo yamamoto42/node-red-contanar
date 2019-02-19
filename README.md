@@ -1,4 +1,4 @@
-# node-red-contanar
+# nrc - Node Red Container -
 
 ## Getting Started
 

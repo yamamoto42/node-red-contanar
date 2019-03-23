@@ -11,7 +11,7 @@
         "type": "http in",
         "z": "f2f59b49.5650e8",
         "name": "",
-        "url": "/rapidservlet/rapid",
+        "url": "rapidservlet/rapid",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",

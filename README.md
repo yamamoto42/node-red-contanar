@@ -29,9 +29,11 @@ curl http://localhost/rapidservlet/rapid
 {"result":[{"category":"t-C01cat","confidence":0.52550542354584,"position":[-50,-50,50,50]},{"category":"t-C01cat","confidence":0.52564257383347,"position":[-25,-50,75,50]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[0,-50,100,50]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[25,-50,125,50]},{"category":"t-C01cat","confidence":0.5256906747818,"position":[-50,-25,50,75]},{"category":"t-C01cat","confidence":0.52552902698517,"position":[-25,-25,75,75]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[0,-25,100,75]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[25,-25,125,75]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[-50,0,50,100]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[-25,0,75,100]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[0,0,100,100]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[25,0,125,100]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[-50,25,50,125]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[-25,25,75,125]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[0,25,100,125]},{"category":"t-C01cat","confidence":0.52543026208878,"position":[25,25,125,125]}],"IMA_status":"0","all_result":{"category":["t-C01cat","t-C02doc"],"result":[{"position":[-50,-50,50,50],"confidence":[0.52550542354584,0.47449463605881]},{"position":[-25,-50,75,50],"confidence":[0.52564257383347,0.47435745596886]},{"position":[0,-50,100,50],"confidence":[0.52543026208878,0.4745697081089]},{"position":[25,-50,125,50],"confidence":[0.52543026208878,0.4745697081089]},{"position":[-50,-25,50,75],"confidence":[0.5256906747818,0.4743093252182]},{"position":[-25,-25,75,75],"confidence":[0.52552902698517,0.47447091341019]},{"position":[0,-25,100,75],"confidence":[0.52543026208878,0.4745697081089]},{"position":[25,-25,125,75],"confidence":[0.52543026208878,0.4745697081089]},{"position":[-50,0,50,100],"confidence":[0.52543026208878,0.4745697081089]},{"position":[-25,0,75,100],"confidence":[0.52543026208878,0.4745697081089]},{"position":[0,0,100,100],"confidence":[0.52543026208878,0.4745697081089]},{"position":[25,0,125,100],"confidence":[0.52543026208878,0.4745697081089]},{"position":[-50,25,50,125],"confidence":[0.52543026208878,0.4745697081089]},{"position":[-25,25,75,125],"confidence":[0.52543026208878,0.4745697081089]},{"position":[0,25,100,125],"confidence":[0.52543026208878,0.4745697081089]},{"position":[25,25,125,125],"confidence":[0.52543026208878,0.4745697081089]}]}}
 ```
 
-## Modify application / Azure ACI
+## Modify application / Deploy Azure ACI
 ---
 Chek [Azure Document](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)
+
+This case use port 1880. if you change service port, use yaml file.
 
 1. Modify Code
 ```
@@ -50,34 +52,50 @@ docker build -t nrc .
 ```
 az login
 az account set --subscription <subscription_id>
-$nrcrg = "nrcrg"
-$nrcacr = "nrcacr"
-$nrcloc = "eastus"
+nrcrg="nrcrg"
+nrcacr="nrcacr"
+nrcloc="eastus"
+nrcname="mynrc"
 az group create --name $nrcrg --location $nrcloc
 az acr create -g $nrcrg -n $nrcacr --sku Basic --admin-enabled true
 ```
 
 4. Push container registry
+Check AcrLoginServer name
 ```
-az acr credential show -n $nrcacr
 az acr list -g $nrcrg --query "[].{acrLoginServer:loginServer}" --output table
-docker tag nrc:latest <nrcacr.azurecr.io>/nrc:latest
-docker push <nrcacr>.azurecr.io/nrc:latest
+```
+Tagging AcrLoginServer (usualy $nrcacr.azurecr.io)
+```
+docker tag nrc:latest $nrcacr.azurecr.io/nrc:latest
+```
+Push Azure container registry
+```
+az acr login -n $nrcacr
+docker push $nrcacr.azurecr.io/nrc:latest
 ```
 
-4. Deploy to Azure ACI
+5. Deploy to Azure ACI
+Check registry-password
 ```
-az acr credential show -n $nrcacr --query "passwords[0].value"
+az acr credential show -n $nrcacr
+```
+Create and Deploy nrc
+```
 az container create \
 -g $nrcrg \
--n $mynrc \
---image nrc:latest \
+-n $nrcname \
+--image $nrcacr.azurecr.io/nrc:latest \
 --cpu 1 \
 --memory 1 \
 --registry-username $nrcacr \
---registry-password xxxxxxxxxxxxxxxxxxxxxx \
---ports 80 1880 \
---dns-name-label $mynrc
+--registry-password <xxxxxxxxxxxxxxxxxxxxxx> \
+--ports 1880 \
+--dns-name-label $nrcname
+```
+6. Run
+```
+curl http://$nrcname.$nrcloc.azurecontainer.io:1880/rapidservlet/rapid
 ```
 
 ## License

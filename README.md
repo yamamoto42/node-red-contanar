@@ -3,6 +3,8 @@
 
 This is static json data responser.
 
+![sketch](https://github.com/yamamoto42/nrc/blob/master/img.png "sketch")
+
 ## Getting Started
 1. Build container yourself
 

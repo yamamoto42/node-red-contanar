@@ -6,7 +6,7 @@ This is static json data responser.
 ## Getting Started
 1. Build container yourself
 
-```shell
+```sh
 git clone https://github.com/yamamoto42/nrc.git
 cd nrc
 docker build -t nrc .
@@ -15,14 +15,14 @@ docker run -it -p 80:1880 --name mynrc nrc
 
 2. Use DockerHub container
 
-```shell
+```sh
 docker run -it -p 80:1880 --name mynrc yamamoto42/node-red-container
 ```
 
 ## Run nrc
 1. Run
 
-```shell
+```sh
 curl http://localhost/rapidservlet/rapid
 ```
 2. Execution result
@@ -40,7 +40,7 @@ Chek [Azure Document](https://docs.microsoft.com/en-us/azure/container-instances
 
 1. Modify Code
 
-```shell
+```sh
 git clone https://github.com/yamamoto42/nrc.git
 cd nrc
 vi flows_test.json
@@ -49,13 +49,13 @@ Can edit with nodered and export JSON.
 
 2. Build container instance
 
-```shell
+```sh
 docker build -t nrc .
 ```
 
 3. Create container registry
 
-```shell
+```sh
 nrcrg="nrcrg"
 nrcacr="nrcacr"
 nrcloc="eastus"
@@ -64,22 +64,22 @@ az login
 az account set --subscription <subscription_id>
 az group create --name $nrcrg --location $nrcloc
 ```
-```shell
+```sh
 az acr create -g $nrcrg -n $nrcacr --sku Basic --admin-enabled true
 ```
 
 4. Push container registry
 
 Check AcrLoginServer name
-```shell
+```sh
 az acr list -g $nrcrg --query "[].{acrLoginServer:loginServer}" --output table
 ```
 Tagging AcrLoginServer (usualy $nrcacr.azurecr.io)
-```shell
+```sh
 docker tag nrc:latest $nrcacr.azurecr.io/nrc:latest
 ```
 Push Azure container registry
-```shell
+```sh
 az acr login -n $nrcacr
 docker push $nrcacr.azurecr.io/nrc:latest
 ```
@@ -87,11 +87,11 @@ docker push $nrcacr.azurecr.io/nrc:latest
 5. Deploy to Azure ACI
 
 Check registry-password
-```shell
+```sh
 az acr credential show -n $nrcacr
 ```
 Create and Deploy nrc
-```shell
+```sh
 az container create \
 -g $nrcrg \
 -n $nrcname \
@@ -105,6 +105,6 @@ az container create \
 ```
 6. Run
 
-```shell
+```sh
 curl http://$nrcname.$nrcloc.azurecontainer.io:1880/rapidservlet/rapid
 ```

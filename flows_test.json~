@@ -12,7 +12,7 @@
         "z": "f2f59b49.5650e8",
         "name": "",
         "url": "rapidservlet/rapid",
-        "method": "post",
+        "method": "get",
         "upload": false,
         "swaggerDoc": "",
         "x": 120,

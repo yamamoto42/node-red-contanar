@@ -106,5 +106,5 @@ az container create \
 6. Run
 
 ```sh
-curl -X POST http://$nrcname.$nrcloc.azurecontainer.io:1880/rapidservlet/rapid
+curl http://$nrcname.$nrcloc.azurecontainer.io:1880/rapidservlet/rapid
 ```

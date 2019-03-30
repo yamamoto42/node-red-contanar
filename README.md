@@ -35,7 +35,7 @@ curl http://localhost/rapidservlet/rapid
 
 ![sketch](https://github.com/yamamoto42/nrc/blob/master/img.png "sketch")
 
-Chek [Azure Document](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app).
+Check [Azure Document](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app).
  This case use port 1880. if you change service port, use yaml file.
 
 1. Modify Code
@@ -45,7 +45,7 @@ git clone https://github.com/yamamoto42/nrc.git
 cd nrc
 vi flows_test.json
 ```
-Can edit with nodered and export JSON.
+Can edit with Node-Red and export JSON.
 
 2. Build container instance
 

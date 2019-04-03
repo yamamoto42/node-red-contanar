@@ -4,6 +4,11 @@
 This is static json data responser.
 
 ## Getting Started
+
+0. Precondition
+
+Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [docker-ce](https://docs.docker.com/install/linux/docker-ce/centos/), [az-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on linux environment.
+
 1. Build container yourself
 
 ```sh
@@ -20,6 +25,7 @@ docker run -it -p 80:1880 --name mynrc yamamoto42/node-red-container
 ```
 
 ## Run nrc
+
 1. Run
 
 ```sh
@@ -47,7 +53,7 @@ vi flows_test.json
 ```
 Can edit with Node-Red and export JSON.
 
-2. Build container instance
+2. Build container image by Dockerfile
 
 ```sh
 docker build -t nrc .
